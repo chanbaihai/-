@@ -7,6 +7,8 @@ $.extend($.waterFull, {
         this.getInitHeight();
         //先初始化获取第一行的高数数组在执行下面的加载图片方法
         this.loadImage();
+
+        this.mouseScroll();
     },
     parent: $(".container"),//获取最大div
     heightArray: [],//定义高度数组
@@ -26,6 +28,51 @@ $.extend($.waterFull, {
         //定义方法获取最小高度对应的数组下标
         this.minIndex = this.heightArray.indexOf(this.minHeight)
     },
+    canLoad(){
+        //获取最后一个内容块
+        let lastDiv = $(".son").last();
+        //获取div距离页面顶部的距离，用getBoundingClientRect
+        //该方法返回一个对象我们直接获取top属性的值
+        let height = lastDiv[0].getBoundingClientRect().top;
+        //因为要出现一半，所以要减去本身的高度的1/2
+        console.log($(window).height()-lastDiv.outerHeight(),height);
+        return height <= ($(window).height() - lastDiv.outerHeight()/2);
+    },
+    mouseScroll(){
+    let flag = true;
+  $(window).scroll(() => {
+  if (this.canLoad()){
+      if(flag){
+  flag = false;
+  setTimeout(() => {
+      for (let i = 0;i < 4;i ++){
+          //只加载四张，下面的方法和一开始
+          //生成瀑布流方法一样
+          let div = $("<div/>");
+          let img = new Image();
+          $(img).load(() => {
+              console.log(flag);
+
+              //这里监听img对象的load事件，
+              // 加载完毕执行waterFull布局
+              this.waterFull(div);
+              //等加载瀑布流执行完毕再将
+              //flag赋值为true这样才能
+              //满足下一次加载条件
+              flag = true;//重点！！
+          });
+          //给img对象赋src路径
+          img.src = `${this.imgArray[i]}`;
+          let template = this.template(img.src);
+          div.append(template);
+          this.parent.append(div);
+      }
+          },1000)
+
+      }
+  }
+  })
+},
     loadImage() {//遍历图片数组生成内容块，插入最大div
         for (let i = 0; i < this.imgArray.length; i++) {
             //for,each遍历都可以，我就用最简单的for吧
