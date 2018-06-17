@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .container{
+            position: relative;
+            /*为了后面的子元素定位*/
+            width: 980px;
+            margin: 100px auto;
+            display: flex;
+            justify-content:space-between;
+            flex-wrap:wrap;
+            /*图片多了换行*/
+        align-items: flex-start;
+            /*交叉轴也就是垂直方向从顶部开始排列，一定要设置！！因为默认为strench会拉伸内容块*/
+            }
+        .son{
+            width: 240px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .content{
+            border: 1px solid #ccc;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .content img{
+            height: 100%;
+            width: 100%;
+        }
+
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="son">
+        <div class="content">
+            <img src="img/001O7HQgzy6JIFwTUhkba&690.jpg" >
+        </div>
+    </div>
+    <div class="son">
+        <div class="content">
+            <img src="img/5928a448gw1epdxdzezdwj20p011iwnd.jpg" >
+        </div>
+    </div>
+    <div class="son">
+        <div class="content">
+            <img src="img/75900329jw1e8qgp5bmzyj2050050aa8.jpg" >
+        </div>
+    </div>
+    <div class="son">
+        <div class="content">
+            <img src="img/001O7HQgzy6LJ6x2ggY5c&690.jpg" >
+        </div>
+    </div>
+</div>
+</body>
+
+<script src="index.js"></script>
+<script>
+    $(() => {
+        $.waterFull.init();
+    })
+</script>
+</html>
