@@ -36,7 +36,7 @@ $.extend($.waterFull, {
                 this.waterFull(div);
             });
             //给img对象赋src路径
-            img.src = `./img/${this.imgArray[i]}.jpg`;
+            img.src = `${this.imgArray[i]}`;
             let template = this.template(img.src);
             //关键一步将img对象src复制给template这样浏览器就不会再加载了，img对象加载完就能直接读取
             div.append(template);
