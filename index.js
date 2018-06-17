@@ -78,6 +78,7 @@ $.extend($.waterFull, {
             "https://ws1.sinaimg.cn/large/005zqAfjgy1fse9hio2jaj305p08kt8v.jpg",
             "https://ws1.sinaimg.cn/large/005zqAfjgy1fse9hindi5j304z04z0sr.jpg",
             "https://ws1.sinaimg.cn/large/005zqAfjgy1fse9hinl5ij305p08k74k.jpg",
+            "https://ws1.sinaimg.cn/large/005zqAfjgy1fse9hinl5ij305p08k74k.jpg",
         ]
 });
 
