@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: hotpink;
+            margin: 1800px auto 0;
+        }
+
+        .shadow {
+            width: 200px;
+            height: 100px;
+            margin: 150px auto;
+            background-color: #ccc;
+            animation: shadow 1s cubic-bezier(0.30, 2.40, 0.85, 2.50) infinite alternate;
+        }
+
+        @keyframes shadow {
+            from {
+                transform: scale(1)
+            }
+            to {
+                transform: scale(0.8)
+            }
+        }
+
+        @keyframes move {
+            0%, 100% {
+                transform: translateY(0px) scale(0.98);
+            }
+            80% {
+                transform: translateY(-150px) scale(1.06);
+            }
+        }
+    </style>
+    <script src="../pubuliu/jquery-1.12.4.js"></script>
+</head>
+<body>
+<div></div>
+<div class="shadow"></div>
+<script>
+    let div = document.getElementsByTagName("div")[0];
+    $(".shadow").hide();
+    window.onscroll = function () {
+        let rect = div.getBoundingClientRect();
+        if (canMove(rect)) {
+            $(".shadow").show();
+            $(div).css({animation:
+             `1s move
+             cubic-bezier(0.30, 2.40, 0.85, 2.50)
+             infinite`})
+        }
+    };
+//开始动画条件
+    function canMove(rect) {
+        let windowH = window.innerHeight;
+        return rect.top < windowH - rect.height
+    }
+</script>
+</body>
+</html>
