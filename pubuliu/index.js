@@ -40,27 +40,26 @@ $.extend($.waterFull, {
     },
     mouseScroll(){
     let flag = true;
-  $(window).scroll(() => {
-  if (this.canLoad()){
+    $(window).scroll(() => {
+      if (this.canLoad()){
       if(flag){
-  flag = false;
-  setTimeout(() => {
-      for (let i = 0;i < 4;i ++){
+        flag = false;
+         setTimeout(() => {
+          for (let i = 0;i < 4;i ++){
           //只加载四张，下面的方法和一开始
           //生成瀑布流方法一样
           let div = $("<div/>");
           let img = new Image();
           $(img).load(() => {
-              console.log(flag);
-
-              //这里监听img对象的load事件，
-              // 加载完毕执行waterFull布局
-              this.waterFull(div);
-              //等加载瀑布流执行完毕再将
-              //flag赋值为true这样才能
-              //满足下一次加载条件
-              flag = true;//重点！！
-          });
+          console.log(flag);
+          //这里监听img对象的load事件，
+          // 加载完毕执行waterFull布局
+          this.waterFull(div);
+          //等加载瀑布流执行完毕再将
+          //flag赋值为true这样才能
+          //满足下一次加载条件
+          flag = true;//重点！！
+      });
           //给img对象赋src路径
           img.src = `${this.imgArray[i]}`;
           let template = this.template(img.src);
@@ -68,7 +67,6 @@ $.extend($.waterFull, {
           this.parent.append(div);
       }
           },1000)
-
       }
   }
   })
